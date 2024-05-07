@@ -1,7 +1,15 @@
 <?php
 session_start();
 
-$value = $_SESSION["value"] ?? '';
+$value = $_SESSION["value"] ?? null;
+
+//Fare sì che ricaricando la pagina si torni a index.php
+//Se $value sarà null si tornerà alla pagina precedente
+if($value === null){
+    header('Location: ./index.php');
+};
+
+session_unset();
 
 ?>
 
