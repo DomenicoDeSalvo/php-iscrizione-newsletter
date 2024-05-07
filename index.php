@@ -1,5 +1,23 @@
 <?php
-    include_once __DIR__ . '/partials/utilities.php';
+    session_start();
+
+    require_once __DIR__ . '/partials/utilities.php';
+
+    //Recuperare la mail
+    $user_mail = $_POST["mail"] ?? null;
+
+    if($user_mail){
+        //Controllare che sia valida
+        $value = mail_ceck($user_mail);
+        
+        $_SESSION["value"] = $value;
+        //Redirect
+        header('Location: ./subscription.php');
+    }
+
+
+
+
 ?>
 
 <!-- HTML -->
@@ -24,13 +42,9 @@
                         <div class="my-5 text-center">
                             <!-- FORM -->
                             <form action="" method="post">
-                                <input type="email" name="mail" placeholder="Inserire la propria email">
+                                <input type="email" name="mail" value="<?php echo $user_mail?>" placeholder="Inserire la propria email">
                                 <button>Invia</button>    
-                            </form>
-                            <!-- ALERT -->
-                            <div class="alert alert-primary my-5" role="alert">
-                                <?php echo mail_ceck($user_mail) === true ? "Email valida" : "Inserire Email valida" ; ?>
-                            </div>                       
+                            </form>                       
                         </div>
                     </div>
                 </section>

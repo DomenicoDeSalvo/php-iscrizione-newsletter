@@ -1,6 +1,6 @@
 <?php
     //Recuperare la mail
-    $user_mail = $_POST["mail"] ?? '';
+    $user_mail = $_POST["mail"] ?? null;
     //Funzione per il controllo della mail
     function mail_ceck($user_mail){
         if($user_mail !== ''){
