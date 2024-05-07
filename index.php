@@ -1,3 +1,19 @@
+<?php
+    //Recuperare la mail
+    $user_mail = $_POST["mail"] ?? '';
+    //Funzione per il controllo della mail
+    function mail_ceck($user_mail){
+        if(str_contains($user_mail, '@') && str_contains($user_mail, '.')){
+            $valid = true;
+            return $valid;
+        } else {
+            $valid = false;
+            return $valid; 
+        }
+    };
+?>
+
+
 <!-- HTML -->
 <!DOCTYPE html>
     <html lang="en">
@@ -9,17 +25,26 @@
     </head>
     <body>
         <main>
-            <!-- FORM -->
             <section>
                 <div class="container">
                     <div class="my-5 text-center">
-                        <form action="">
+                        <!-- FORM -->
+                        <form action="" method="post">
                             <input type="email" name="mail" placeholder="Inserire la propria email">
-                            <button>Invia</button>
+                            <button>Invia</button>    
                         </form>
+                        <!-- ALERT -->
+                        <div class="alert alert-primary my-5" role="alert">
+                            <?php echo mail_ceck($user_mail) === true ? "Email valida" : "Inserire Email valida" ; ?>
+                        </div>                       
                     </div>
                 </div>
             </section>
         </main>
+
+        <!-- BOOTSTRAP JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
 </html>
